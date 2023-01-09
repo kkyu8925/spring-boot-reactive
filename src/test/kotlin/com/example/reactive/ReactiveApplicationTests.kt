@@ -1,10 +1,10 @@
-package com.example.ch1
+package com.example.reactive
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class Ch1ApplicationTests {
+class ReactiveApplicationTests {
 
     @Test
     fun contextLoads() {

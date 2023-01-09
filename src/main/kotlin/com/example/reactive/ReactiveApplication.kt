@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class Ch1Application
+class ReactiveApplication
 
 fun main(args: Array<String>) {
-    runApplication<Ch1Application>(*args)
+    runApplication<ReactiveApplication>(*args)
 }
