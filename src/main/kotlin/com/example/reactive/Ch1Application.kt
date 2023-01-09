@@ -1,4 +1,4 @@
-package com.example.ch1
+package com.example.reactive
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

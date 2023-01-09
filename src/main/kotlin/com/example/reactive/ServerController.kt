@@ -1,4 +1,4 @@
-package com.example.ch1
+package com.example.reactive
 
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.GetMapping
