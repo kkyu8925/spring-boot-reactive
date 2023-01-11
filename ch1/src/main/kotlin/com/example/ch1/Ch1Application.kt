@@ -1,11 +1,11 @@
-package com.example.reactive
+package com.example.ch1
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class ReactiveApplication
+class Ch1Application
 
 fun main(args: Array<String>) {
-    runApplication<ReactiveApplication>(*args)
+    runApplication<Ch1Application>(*args)
 }

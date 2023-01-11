@@ -1,7 +1,8 @@
-package com.example.reactive
+package com.example.ch1
 
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
+import reactor.core.publisher.SynchronousSink
 import java.time.Duration
 import java.util.*
 
@@ -12,8 +13,9 @@ class KitchenService {
      * 요리 스트림 생성
      */
     fun getDishes(): Flux<Dish> {
-        return Flux.generate { it.next(randomDish()) }
-            .delayElements(Duration.ofMillis(250))
+        return Flux.generate { sink: SynchronousSink<Dish> ->
+            sink.next(randomDish())
+        }.delayElements(Duration.ofMillis(250))
     }
 
     /**

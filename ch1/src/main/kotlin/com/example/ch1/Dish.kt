@@ -1,4 +1,4 @@
-package com.example.reactive
+package com.example.ch1
 
 data class Dish(
     var description: String
