@@ -1,5 +1,6 @@
-package com.example.ch2
+package com.example.ch2.controller
 
+import com.example.ch2.model.Item
 import com.example.ch2.repository.ItemRepository
 import com.example.ch2.service.CartService
 import com.example.ch2.service.InventoryService

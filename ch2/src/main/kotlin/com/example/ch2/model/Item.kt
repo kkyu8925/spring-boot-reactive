@@ -1,4 +1,4 @@
-package com.example.ch2
+package com.example.ch2.model
 
 import org.springframework.data.annotation.Id
 

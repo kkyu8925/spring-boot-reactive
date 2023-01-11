@@ -1,6 +1,6 @@
 package com.example.ch2.service
 
-import com.example.ch2.Item
+import com.example.ch2.model.Item
 import com.example.ch2.repository.ItemRepository
 import org.springframework.data.domain.Example
 import org.springframework.data.domain.ExampleMatcher

@@ -1,5 +1,6 @@
 package com.example.ch2
 
+import com.example.ch2.model.Item
 import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.data.mongodb.core.MongoOperations

@@ -1,4 +1,4 @@
-package com.example.ch2
+package com.example.ch2.model
 
 class CartItem(
     val item: Item,

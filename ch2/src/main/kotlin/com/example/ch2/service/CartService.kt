@@ -1,7 +1,7 @@
 package com.example.ch2.service
 
-import com.example.ch2.Cart
-import com.example.ch2.CartItem
+import com.example.ch2.model.Cart
+import com.example.ch2.model.CartItem
 import com.example.ch2.repository.CartRepository
 import com.example.ch2.repository.ItemRepository
 import org.springframework.stereotype.Service
