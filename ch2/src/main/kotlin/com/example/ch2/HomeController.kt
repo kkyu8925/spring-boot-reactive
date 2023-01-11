@@ -1,7 +1,8 @@
 package com.example.ch2
 
-import com.example.ch2.repository.CartRepository
 import com.example.ch2.repository.ItemRepository
+import com.example.ch2.service.CartService
+import com.example.ch2.service.InventoryService
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.reactive.result.view.Rendering
@@ -10,7 +11,8 @@ import reactor.core.publisher.Mono
 @Controller
 class HomeController(
     private val itemRepository: ItemRepository,
-    private val cartRepository: CartRepository
+    private val cartService: CartService,
+    private val inventoryService: InventoryService
 ) {
 
     @GetMapping("/")
@@ -19,32 +21,14 @@ class HomeController(
             Rendering.view("home.html").modelAttribute(
                 "items", itemRepository.findAll()
             ).modelAttribute(
-                "cart", cartRepository.findById("My Cart").defaultIfEmpty(Cart("My Cart"))
+                "cart", cartService.getCart("My Cart")
             ).build()
         )
     }
 
     @PostMapping("/add/{id}")
     fun addToCart(@PathVariable id: String): Mono<String> {
-        return cartRepository.findById("My Cart")
-            .defaultIfEmpty(Cart("My Cart"))
-            .flatMap { cart ->
-                cart.cartItems.stream()
-                    .filter { it.item.id.equals(id) }
-                    .findAny()
-                    .map {
-                        it.increment()
-                        Mono.just(cart)
-                    }
-                    .orElseGet {
-                        itemRepository.findById(id)
-                            .map { CartItem(it) }
-                            .map {
-                                cart.cartItems.add(it)
-                                cart
-                            }
-                    }
-            }.flatMap { cartRepository.save(it) }.thenReturn("redirect:/")
+        return cartService.addToCart("My Cart", id).thenReturn("redirect:/")
     }
 
     @PostMapping
@@ -55,5 +39,20 @@ class HomeController(
     @DeleteMapping("/delete/{id}")
     fun deleteItem(@PathVariable id: String): Mono<String> {
         return itemRepository.deleteById(id).thenReturn("redirect:/")
+    }
+
+    @GetMapping("/search")
+    fun search(
+        @RequestParam(required = false) name: String,
+        @RequestParam(required = false) description: String,
+        @RequestParam useAnd: Boolean
+    ): Mono<Rendering> {
+        return Mono.just(
+            Rendering.view("home.html").modelAttribute(
+                    "items", inventoryService.searchByExample(name, description, useAnd)
+                ).modelAttribute(
+                    "cart", cartService.getCart("My Cart")
+                ).build()
+        )
     }
 }
